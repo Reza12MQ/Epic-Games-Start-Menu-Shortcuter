@@ -1,6 +1,6 @@
 import os
 
-outputpath = os.path.expandvars("%ProgramData%\Microsoft\Windows\Start Menu\Programs\Epic Games")
+outputPath = os.path.expandvars("%ProgramData%\Microsoft\Windows\Start Menu\Programs\Epic Games")
 
 # check admin permissions
 testFilePath = os.path.expandvars(r"%ProgramData%\Microsoft\Windows\Start Menu\Programs\test")
@@ -14,14 +14,14 @@ else:
     urlFile.close()
     os.remove(testFilePath)
 
-if (not os.path.exists(outputpath)):
-    os.makedirs(outputpath)
+if (not os.path.exists(outputPath)):
+    os.makedirs(outputPath)
 
 print()
 # remove old shortcuts
-for f in os.listdir(outputpath):
+for f in os.listdir(outputPath):
     try:
-        os.remove(f"{outputpath}\{f}")
+        os.remove(f"{outputPath}\{f}")
     except Exception:
         print(f'file "{f}" cannot be deleted')
 
@@ -78,15 +78,14 @@ for i in range(len(maniFiles)):
             print()
 
     if (not skip):
-        with open(f"{outputpath}\{DisplayName}.url", "w") as urlFile:
+        with open(f"{outputPath}\{DisplayName}.url", "w") as urlFile:
             urlFile.write('[{000214A0-0000-0000-C000-000000000046}]\n')
             urlFile.write('Prop3=19,0\n')
             urlFile.write('[InternetShortcut]\n')
             urlFile.write('IDList=\n')
             urlFile.write('IconIndex=0\n')
             urlFile.write(f'WorkingDirectory={InstallLocation}\n')
-            urlFile.write(
-                f'URL=com.epicgames.launcher://apps/{CatalogNamespace}%3A{CatalogItemId}%3A{AppName}?action=launch&silent=true\n')
+            urlFile.write(f'URL=com.epicgames.launcher://apps/{CatalogNamespace}%3A{CatalogItemId}%3A{AppName}?action=launch&silent=true\n')
             urlFile.write(f'IconFile={exePath}\n')
         added += 1
 
