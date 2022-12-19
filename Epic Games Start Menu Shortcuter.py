@@ -1,9 +1,9 @@
 import os
 
-outputpath = "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Epic Games"
+outputpath = os.path.expandvars("%ProgramData%\Microsoft\Windows\Start Menu\Programs\Epic Games")
 
 # check admin permissions
-testFilePath = r"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\test"
+testFilePath = os.path.expandvars(r"%ProgramData%\Microsoft\Windows\Start Menu\Programs\test")
 try:
     urlFile = open(testFilePath, "w")
 except PermissionError:
@@ -28,7 +28,7 @@ for f in os.listdir(outputpath):
 # all Epic manifest files
 maniFiles = []
 
-maniPath = 'C:\ProgramData\Epic\EpicGamesLauncher\Data\Manifests'
+maniPath = os.path.expandvars('%ProgramData%\Epic\EpicGamesLauncher\Data\Manifests')
 print(f'Reading Epic manifest files from "{maniPath}"...')
 print()
 for path in os.scandir(maniPath):
@@ -39,7 +39,7 @@ print(
     f"Adding shortcuts to Start Menu from {len(maniFiles)} Epic manifest files...")
 added = 0
 for i in range(len(maniFiles)):
-    with open(f"C:\ProgramData\Epic\EpicGamesLauncher\Data\Manifests\{maniFiles[i]}", 'r') as file:
+    with open(f"{maniPath}\{maniFiles[i]}", 'r') as file:
         fileLines = file.readlines()
         LaunchExecutable = DisplayName = InstallLocation = CatalogNamespace = CatalogItemId = AppName = ""
 
