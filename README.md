@@ -1,2 +1,2 @@
 # Epic-Games-Start-Menu-Shortcuter
-This software adds Downloaded games from Epic Games to Start Menu, that means they will be searchable.
+This software will add downloaded games from the Epic Games Store to the Start menu, which means they will be searchable.
