@@ -35,8 +35,7 @@ for path in os.scandir(maniPath):
     if path.is_file():
         maniFiles.append(path.name)
 
-print(
-    f"Adding shortcuts to Start Menu from {len(maniFiles)} Epic manifest files...")
+print(f"Adding shortcuts to Start Menu from {len(maniFiles)} Epic manifest files...")
 added = 0
 for i in range(len(maniFiles)):
     with open(f"{maniPath}\{maniFiles[i]}", 'r') as file:
