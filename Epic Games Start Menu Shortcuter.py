@@ -69,6 +69,9 @@ for i in range(len(maniFiles)):
         print(f"{DisplayName} ← {maniFiles[i]}", end="")
         exePath = f"{InstallLocation}\{LaunchExecutable}"
 
+        exePathSplit = exePath.split('.exe')[0]
+        icoPath = f"{exePathSplit}.ico"
+
         if (LaunchExecutable == "" or DisplayName == "" or InstallLocation == "" or CatalogNamespace == "" or CatalogItemId == "" or AppName == ""):
             skip = True
             print(" skipped")
@@ -85,7 +88,12 @@ for i in range(len(maniFiles)):
             urlFile.write('IconIndex=0\n')
             urlFile.write(f'WorkingDirectory={InstallLocation}\n')
             urlFile.write(f'URL=com.epicgames.launcher://apps/{CatalogNamespace}%3A{CatalogItemId}%3A{AppName}?action=launch&silent=true\n')
-            urlFile.write(f'IconFile={exePath}\n')
+
+            if (not os.path.exists(icoPath)):
+                urlFile.write(f'IconFile={exePath}\n')
+            else:
+                urlFile.write(f'IconFile={icoPath}\n')
+                
         added += 1
 
 print()
